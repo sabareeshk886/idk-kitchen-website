@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IDK Kitchen Digital Menu - Idli, Dosa, Kheema Specialties">
+    <title>IDK Kitchen - Digital Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A875;
+            --gold-dark: #A38655;
+            --cream: #F5F2ED;
+            --dark: #1A1614;
+            --red: #C74138;
+            --green: #3D4F3A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 2rem;
+        }
+
+        .header {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+            color: var(--gold);
+        }
+
+        .header .subtitle {
+            font-size: 0.9rem;
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        .header .kannada {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .category {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 1rem 1.25rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .menu-items {
+            padding: 0.5rem 0;
+        }
+
+        .menu-item {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:active {
+            background: #fafafa;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            flex: 1;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--gold-dark);
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+            color: #666;
+        }
+
+        .footer-logo {
+            width: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--gold-dark);
+            text-decoration: none;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .social-link:active {
+            color: var(--gold);
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .category-header {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="LOGO_1-removebg-preview.png" alt="IDK Logo" class="logo">
+        <h1>IDK</h1>
+        <div class="subtitle">Idli · Dosa · Kheema</div>
+        <div class="kannada">ಇಡ್ಲಿ · ದೋಸೆ · ಕೀಮಾ</div>
+    </div>
+
+    <div class="container">
+        <!-- Idly Category -->
+        <div class="category">
+            <div class="category-header">Idly</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Idly Sambar</div>
+                        <div class="item-price">₹40</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Ghee Kheema Idly</div>
+                        <div class="item-price">₹80</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Button Idly</div>
+                        <div class="item-price">₹70</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Thatte Idly</div>
+                        <div class="item-price">₹90</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Paddu</div>
+                        <div class="item-price">₹75</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Stuffed Idly</div>
+                        <div class="item-price">₹85</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Idly Kheema Gojju</div>
+                        <div class="item-price">₹70</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dosa Category -->
+        <div class="category">
+            <div class="category-header">Dosa</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Plain Dosa</div>
+                        <div class="item-price">₹50</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Plain Dosa with Kheema Gojju</div>
+                        <div class="item-price">₹90</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Masala Dosa</div>
+                        <div class="item-price">₹110</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Open Dosa</div>
+                        <div class="item-price">₹120</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kheema Specials -->
+        <div class="category">
+            <div class="category-header">Kheema Specials</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">
+                            Chicken Kheema Uttapam
+                            <span class="badge">Signature</span>
+                        </div>
+                        <div class="item-price">₹100</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">
+                            Chicken Kheema Upma
+                            <span class="badge">Signature</span>
+                        </div>
+                        <div class="item-price">₹95</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Vada</div>
+                        <div class="item-price">₹60</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Pulav</div>
+                        <div class="item-price">₹130</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Shavige</div>
+                        <div class="item-price">₹85</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Bonda Soup</div>
+                        <div class="item-price">₹70</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Stuffed Paratha</div>
+                        <div class="item-price">₹90</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Kheema Pav</div>
+                        <div class="item-price">₹80</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rice & Combo -->
+        <div class="category">
+            <div class="category-header">Rice & Combo</div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Poori with Kheema Gojju</div>
+                        <div class="item-price">₹110</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-name">Ghee Rice with Kheema Gojju</div>
+                        <div class="item-price">₹140</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <img src="LOGO_1-removebg-preview.png" alt="IDK Logo" class="footer-logo">
+        <div><strong>IDK Kitchen</strong></div>
+        <div class="contact-info">
+            📍 Arekere, Bangalore<br>
+            📞 <a href="tel:+919902299457">+91 99022 99457</a><br>
+            ✉️ <a href="mailto:info@idkkitchen.in">info@idkkitchen.in</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/idk.idlydosakheema/" class="social-link">📷</a>
+        </div>
+    </div>
+</body>
+
+</html>
