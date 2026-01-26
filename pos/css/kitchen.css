@@ -1,0 +1,371 @@
+:root {
+    --gold: #C9A875;
+    --gold-dark: #A38655;
+    --cream: #F5F2ED;
+    --dark: #1A1614;
+    --red: #C74138;
+    --green: #4CAF50;
+    --orange: #FF9800;
+    --border: #E0E0E0;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.kitchen-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.kitchen-header {
+    background: var(--dark);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--gold);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-logo {
+    height: 50px;
+}
+
+.kitchen-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-value.pending {
+    color: var(--orange);
+}
+
+.stat-value.ready {
+    color: var(--green);
+}
+
+.current-time {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.btn-icon {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    color: white;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Orders Container */
+.orders-container {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    align-content: start;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #888;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+}
+
+/* Order Card */
+.order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all 0.3s;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-card.new {
+    border: 3px solid var(--green);
+    animation: pulse 1s;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.order-card.warning {
+    border-left: 5px solid var(--orange);
+}
+
+.order-card.urgent {
+    border-left: 5px solid var(--red);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.token-number {
+    font-family: 'Courier New', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.order-time {
+    text-align: right;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: #666;
+    display: block;
+}
+
+.time-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+}
+
+.time-value.normal {
+    color: var(--green);
+}
+
+.time-value.warning {
+    color: var(--orange);
+}
+
+.time-value.urgent {
+    color: var(--red);
+}
+
+.order-info {
+    margin-bottom: 1rem;
+}
+
+.info-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.info-badge.dine-in {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.info-badge.takeaway {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.table-number {
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.order-items {
+    margin-bottom: 1.5rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: var(--dark);
+}
+
+.item-name {
+    font-weight: 500;
+}
+
+.item-quantity {
+    font-weight: 700;
+    color: var(--gold-dark);
+}
+
+.order-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    border-top: 2px solid var(--border);
+}
+
+.btn-ready {
+    width: 100%;
+    padding: 1rem;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-ready:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.btn-ready:active {
+    transform: translateY(0);
+}
+
+/* Ready Orders Section */
+.ready-section {
+    grid-column: 1 / -1;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #333;
+}
+
+.ready-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 1rem;
+}
+
+.ready-orders {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.ready-card {
+    background: #1e4620;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    padding: 1rem;
+    color: white;
+}
+
+.ready-card .token-number {
+    color: var(--green);
+    font-size: 2rem;
+}
+
+.btn-complete {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-complete:hover {
+    background: var(--green);
+    color: white;
+}

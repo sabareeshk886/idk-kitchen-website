@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDK Kitchen - Kitchen Display</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/kitchen.css">
+</head>
+
+<body>
+    <div class="kitchen-container">
+        <!-- Header -->
+        <header class="kitchen-header">
+            <div class="header-left">
+                <img src="../LOGO_1-removebg-preview.png" alt="IDK Logo" class="header-logo">
+                <h1>Kitchen Display System</h1>
+            </div>
+            <div class="header-right">
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Pending</span>
+                        <span class="stat-value pending" id="pendingCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Ready</span>
+                        <span class="stat-value ready" id="readyCount">0</span>
+                    </div>
+                </div>
+                <span class="current-time" id="currentTime"></span>
+                <button class="btn-icon" onclick="location.href='order.html'" title="Billing">🧾</button>
+                <button class="btn-icon" onclick="location.href='admin.html'" title="Admin">📊</button>
+            </div>
+        </header>
+
+        <!-- Orders Grid -->
+        <div class="orders-container" id="ordersContainer">
+            <div class="empty-state">
+                <div class="empty-icon">🍳</div>
+                <h2>No Pending Orders</h2>
+                <p>New orders will appear here automatically</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio for new order alert -->
+    <audio id="orderAlert" preload="auto">
+        <source
+            src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJB7cIR0gXt0f3SMeHuMfIF9gYOMfHyIe4CHfHx+g4F3fICDe3yGhoF9goF9fYKCfn2Bf39+gH19f359fX17fXx8e3t7e3x6e3p7enl7eXp5eXl4eXh4eHd4d3d3dnZ2dXZ1dXR0dHNzbmxuaGVnYmBhXF1ZWldUVlJUUVNPU1FQT09OTkxNS0tKSklIR0hGRkVFQ0RDQkJBQUBAPz8+Pj09PDw7Ozo6OTk4ODc3NjY1NTQ0MzMyMjExMDAvLy4uLS0sLCsrKioqKSkpKCgoJycnJycmJiYmJSUlJSQkJCQjIyMjIiIiIiIhISEhICAgIB8fHx8eHh4eHh0dHR0cHBwcGxsbGxoaGhoZGRkZGRgYGBgXFxcXFhYWFhUVFRUUFBQUExMTExISEhIRERERERAPECAgICAgIBEREREREhISEhMTExMUFBQUFRUVFRYWFhYXFxcXGBgYGBkZGRkaGhoaGxsbHBwcHB0dHR0eHh4eHx8fHyAgICAxMTEyMjMzNDQ1NTY2Nzc4ODk5Ojo6Ozw8PT09Pj4/P0BAQUFCQ0NDRERFRUZGSEdISUlKSktNTE5OT09QUVJSVFNVVlZYV1laW1tcXlxgXmFiZGRmZWhoa21ucHBycnN2dnd4eXp7fHx+gH+BgoOEhIWGh4iIioqLjIyOj5CQkpKTk5SVlpeYmJqam5ydnZ+fn6CioqOjo6WmqKiqqqutra6vsK+ysrS0tbW2uLi5ubq7vL2+v8DBwsPDxMXGxsjJysvMzc3Oz9DS09TV1tfY2drb3N3e3+Di4uTl5ujp6uzt7fDx8vP09fb3+Pn6+/z9/v8AAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhsbHB0eHx8gISIjIyQlJiYnKCgpKSoqKysrLCwsLS0tLi4uLy8vMDAwMDExMTIyMjMzMzQ0NDU1NTU2NjY2NjY2Njc2Njc2Njc2Njc2Njc2Njc2Njc3Njc3Njc3Njc3Njc3Njc3Njc3Njc3Njc3Nzc3Nzc3Nzc3ODg4ODg4ODg4ODg4ODg5OTk5OTo6Ojs7Ozs8PDw8PT09Pj4+Pz9AQEBBQUFCQkNDQ0RERUVGRkdHSEhJSUpLSktLTE1NTk5PT1BQUVFSUlNTVFRVVVZWV1hYWVlaWltbXFxdXV5eX19gYGFhYmJjY2RkZWVmZmZnZ2hoaWlqampqa2tra2xsbGxsbG1tbW1tbW1ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5tbW1tbW1sbGxsbGtra2tra2pqampqamppamloaGhoZ2hnaGZoZmVmZ2VmZWRlZGRjZGNjYWJhYWBfYF9eX15dXV1cXVtcW1tbWllaWVlYWFhXV1ZWVlVVVFRUU1NTUlJRUVFQT1BPUE9OTk1NS01MS0xLSktKSkpJSUhISEdHRkdGRkVFREVEQ0RDQkNDQUJBQEFAPz9AP0A/Pz8+Pj4+Pj0+PT09Oz48Pj"
+            type="audio/wav">
+    </audio>
+
+    <script type="module" src="js/kitchen.js"></script>
+</body>
+
+</html>

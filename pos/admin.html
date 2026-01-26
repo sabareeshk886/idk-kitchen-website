@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDK Kitchen - Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../LOGO_1-removebg-preview.png" alt="IDK Logo" class="sidebar-logo">
+                <h2>IDK Kitchen</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <span class="nav-icon">📝</span>
+                    Orders
+                </a>
+                <a href="#" class="nav-item" data-section="reports">
+                    <span class="nav-icon">📈</span>
+                    Reports
+                </a>
+                <a href="#" class="nav-item" data-section="menu">
+                    <span class="nav-icon">🍽️</span>
+                    Menu Items
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="order.html" class="btn-sidebar">🧾 Billing</a>
+                <a href="kitchen.html" class="btn-sidebar">🍳 Kitchen</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="header-actions">
+                    <span class="current-date" id="currentDate"></span>
+                    <button class="btn-export" onclick="exportData()">📥 Export Data</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <div class="content-section active" id="dashboard-section">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Today's Revenue</div>
+                            <div class="stat-value" id="todayRevenue">₹0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card orders">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Orders</div>
+                            <div class="stat-value" id="todayOrders">0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card average">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Avg Order Value</div>
+                            <div class="stat-value" id="avgOrderValue">₹0</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card pending">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Pending Orders</div>
+                            <div class="stat-value" id="pendingOrders">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <h3>Payment Breakdown</h3>
+                        <div class="payment-breakdown" id="paymentBreakdown"></div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Top Selling Items</h3>
+                        <div class="top-items" id="topItems"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="recent-orders">
+                    <h3>Recent Orders</h3>
+                    <div class="orders-table" id="recentOrders"></div>
+                </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div class="content-section" id="orders-section">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="ready">Ready</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <div class="orders-list" id="ordersList"></div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="content-section" id="reports-section">
+                <div class="report-options">
+                    <div class="date-selector">
+                        <label>Date Range:</label>
+                        <input type="date" id="startDate">
+                        <span>to</span>
+                        <input type="date" id="endDate">
+                        <button class="btn-generate" onclick="generateReport()">Generate Report</button>
+                    </div>
+                </div>
+
+                <div class="report-display" id="reportDisplay">
+                    <p class="placeholder">Select date range and click Generate Report</p>
+                </div>
+            </div>
+
+            <!-- Menu Section -->
+            <div class="content-section" id="menu-section">
+                <div class="menu-analytics" id="menuAnalytics"></div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>
