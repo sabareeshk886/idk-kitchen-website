@@ -1,4 +1,20 @@
 // IDK Kitchen - Kitchen Display System
+
+// Check authentication
+function checkAuth() {
+    const isAuthenticated = sessionStorage.getItem('posAuth') === 'true';
+    if (!isAuthenticated) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
+// Run auth check immediately
+if (!checkAuth()) {
+    throw new Error('Not authenticated');
+}
+
 let orders = [];
 let refreshInterval;
 
@@ -217,6 +233,14 @@ function playAlert() {
     }
 }
 
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+}
+
 // Make functions global
 window.markAsReady = markAsReady;
 window.markAsCompleted = markAsCompleted;
+window.logout = logout;

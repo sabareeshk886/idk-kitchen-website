@@ -1,4 +1,20 @@
 // IDK Kitchen POS - Billing System
+
+// Check authentication
+function checkAuth() {
+    const isAuthenticated = sessionStorage.getItem('posAuth') === 'true';
+    if (!isAuthenticated) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
+// Run auth check immediately
+if (!checkAuth()) {
+    throw new Error('Not authenticated');
+}
+
 // Menu Data
 const menu = {
     idly: [
@@ -313,6 +329,13 @@ function closeModal() {
     document.getElementById('confirmModal').classList.remove('show');
 }
 
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+}
+
 // Make functions global
 window.addToCart = addToCart;
 window.increaseQuantity = increaseQuantity;
@@ -320,3 +343,4 @@ window.decreaseQuantity = decreaseQuantity;
 window.clearCart = clearCart;
 window.placeOrder = placeOrder;
 window.closeModal = closeModal;
+window.logout = logout;

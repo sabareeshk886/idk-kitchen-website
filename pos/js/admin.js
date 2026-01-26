@@ -1,4 +1,20 @@
 // IDK Kitchen - Admin Dashboard
+
+// Check authentication
+function checkAuth() {
+    const isAuthenticated = sessionStorage.getItem('posAuth') === 'true';
+    if (!isAuthenticated) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
+// Run auth check immediately
+if (!checkAuth()) {
+    throw new Error('Not authenticated');
+}
+
 let allOrders = [];
 let currentFilter = 'all';
 
@@ -368,6 +384,14 @@ function exportData() {
     a.click();
 }
 
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+}
+
 // Make functions global
 window.generateReport = generateReport;
 window.exportData = exportData;
+window.logout = logout;
