@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDK Kitchen - Billing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/billing.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <img src="../LOGO_1-removebg-preview.png" alt="IDK Logo" class="header-logo">
+                <h1>IDK Kitchen - Billing</h1>
+            </div>
+            <div class="header-right">
+                <span class="current-time" id="currentTime"></span>
+                <button class="btn-icon" onclick="location.href='admin.html'" title="Admin">📊</button>
+                <button class="btn-icon" onclick="location.href='kitchen.html'" title="Kitchen">🍳</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Menu Section -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <h2>Menu</h2>
+                    <div class="category-tabs" id="categoryTabs">
+                        <button class="tab active" data-category="all">All</button>
+                        <button class="tab" data-category="idly">Idly</button>
+                        <button class="tab" data-category="dosa">Dosa</button>
+                        <button class="tab" data-category="kheema">Kheema</button>
+                        <button class="tab" data-category="rice">Rice</button>
+                    </div>
+                </div>
+
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Menu items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div class="cart-section">
+                <div class="cart-header">
+                    <h2>Current Order</h2>
+                    <button class="btn-clear" onclick="clearCart()">Clear All</button>
+                </div>
+
+                <div class="order-info">
+                    <div class="info-row">
+                        <label>Token #</label>
+                        <span class="token-number" id="tokenNumber">---</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Type</label>
+                        <select id="orderType" class="input-field">
+                            <option value="dine-in">Dine-in</option>
+                            <option value="takeaway">Takeaway</option>
+                        </select>
+                    </div>
+                    <div class="info-row" id="tableRow">
+                        <label>Table #</label>
+                        <input type="number" id="tableNumber" class="input-field" min="1" max="50">
+                    </div>
+                </div>
+
+                <div class="cart-items" id="cartItems">
+                    <div class="empty-cart">
+                        <p>🛒 Cart is empty</p>
+                        <small>Add items from menu</small>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">₹0</span>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <label>Payment Method</label>
+                    <div class="payment-methods">
+                        <button class="payment-btn active" data-method="cash">💵 Cash</button>
+                        <button class="payment-btn" data-method="upi">📱 UPI</button>
+                        <button class="payment-btn" data-method="card">💳 Card</button>
+                    </div>
+                </div>
+
+                <button class="btn-submit" onclick="placeOrder()" id="submitBtn">
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-success">✅</div>
+            <h2>Order Placed!</h2>
+            <p class="token-display">Token #<span id="confirmedToken"></span></p>
+            <p class="order-type-display" id="confirmedType"></p>
+            <button class="btn-primary" onclick="closeModal()">New Order</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/billing.js"></script>
+</body>
+
+</html>
