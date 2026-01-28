@@ -29,6 +29,12 @@ function initializeKitchen() {
     renderOrders();
     updateTime();
     setInterval(updateTime, 1000);
+
+    // Show admin button only for admin users
+    const userRole = sessionStorage.getItem('userRole');
+    if (userRole === 'admin') {
+        document.getElementById('adminBtn').style.display = 'block';
+    }
 }
 
 function updateTime() {

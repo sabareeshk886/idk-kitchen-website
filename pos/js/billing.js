@@ -65,6 +65,12 @@ function initializeApp() {
     setupEventListeners();
     updateTime();
     setInterval(updateTime, 1000);
+
+    // Show admin button only for admin users
+    const userRole = sessionStorage.getItem('userRole');
+    if (userRole === 'admin') {
+        document.getElementById('adminBtn').style.display = 'block';
+    }
 }
 
 function loadTokenNumber() {
@@ -344,3 +350,5 @@ window.clearCart = clearCart;
 window.placeOrder = placeOrder;
 window.closeModal = closeModal;
 window.logout = logout;
+window.cancelUpiPayment = cancelUpiPayment;
+window.confirmUpiPayment = confirmUpiPayment;

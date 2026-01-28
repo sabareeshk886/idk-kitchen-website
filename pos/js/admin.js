@@ -1,18 +1,27 @@
 // IDK Kitchen - Admin Dashboard
 
-// Check authentication
+// Check authentication and admin role
 function checkAuth() {
     const isAuthenticated = sessionStorage.getItem('posAuth') === 'true';
     if (!isAuthenticated) {
         window.location.href = 'login.html';
         return false;
     }
+
+    // Check if user has admin role
+    const userRole = sessionStorage.getItem('userRole');
+    if (userRole !== 'admin') {
+        alert('Access Denied: Admin privileges required');
+        window.location.href = 'order.html';
+        return false;
+    }
+
     return true;
 }
 
 // Run auth check immediately
 if (!checkAuth()) {
-    throw new Error('Not authenticated');
+    throw new Error('Not authenticated or insufficient privileges');
 }
 
 let allOrders = [];

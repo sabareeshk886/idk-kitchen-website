@@ -23,7 +23,8 @@
             </div>
             <div class="header-right">
                 <span class="current-time" id="currentTime"></span>
-                <button class="btn-icon" onclick="location.href='admin.html'" title="Admin">📊</button>
+                <button class="btn-icon" id="adminBtn" onclick="location.href='admin.html'" title="Admin"
+                    style="display:none">📊</button>
                 <button class="btn-icon" onclick="location.href='kitchen.html'" title="Kitchen">🍳</button>
                 <button class="btn-icon" onclick="logout()" title="Logout">🚪</button>
             </div>
@@ -103,6 +104,33 @@
                 <button class="btn-submit" onclick="placeOrder()" id="submitBtn">
                     Place Order
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPI Payment Modal -->
+    <div class="modal" id="upiModal">
+        <div class="modal-content upi-modal">
+            <h2>Scan to Pay</h2>
+            <div class="upi-amount">₹<span id="upiAmount">0</span></div>
+
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=idkkitchen@paytm&pn=IDK%20Kitchen&cu=INR"
+                    alt="UPI QR Code" class="qr-code" id="upiQRCode">
+                <p class="upi-id">idkkitchen@paytm</p>
+            </div>
+
+            <p class="payment-instruction">Ask customer to scan QR code with any UPI app</p>
+
+            <div class="upi-apps">
+                <span>📱 Google Pay</span>
+                <span>📱 PhonePe</span>
+                <span>📱 Paytm</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="cancelUpiPayment()">Cancel</button>
+                <button class="btn-primary" onclick="confirmUpiPayment()">Payment Received ✓</button>
             </div>
         </div>
     </div>

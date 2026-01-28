@@ -205,11 +205,20 @@
         </div>
 
         <div class="demo-note">
-            💡 Demo credentials: username = <strong>test</strong>, password = <strong>test</strong>
+            💡 <strong>Admin:</strong> username = <strong>test</strong>, password = <strong>test</strong> (Full
+            Access)<br>
+            💡 <strong>Staff:</strong> username = <strong>staff</strong>, password = <strong>staff</strong> (Billing &
+            Kitchen Only)
         </div>
     </div>
 
     <script>
+        // User database with roles
+        const users = {
+            'test': { password: 'test', role: 'admin', name: 'Admin' },
+            'staff': { password: 'staff', role: 'staff', name: 'Staff' }
+        };
+
         // Check if already logged in
         if (sessionStorage.getItem('posAuth') === 'true') {
             const targetPage = sessionStorage.getItem('targetPage') || 'order';
@@ -223,19 +232,32 @@
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
 
-            // Simple authentication (username: test, password: test)
-            if (username === 'test' && password === 'test') {
-                // Set session
+            // Check credentials
+            const user = users[username];
+
+            if (user && user.password === password) {
+                // Set session with role
                 sessionStorage.setItem('posAuth', 'true');
                 sessionStorage.setItem('username', username);
+                sessionStorage.setItem('userRole', user.role);
+                sessionStorage.setItem('userName', user.name);
                 sessionStorage.setItem('loginTime', new Date().toISOString());
 
-                // Get target page from session or default to order
+                // Get target page
                 const targetPage = sessionStorage.getItem('targetPage') || 'order';
+
+                // Check if staff trying to access admin
+                if (user.role === 'staff' && targetPage === 'admin') {
+                    errorMessage.textContent = 'Access denied: Admin privileges required';
+                    errorMessage.classList.add('show');
+                    setTimeout(() => errorMessage.classList.remove('show'), 3000);
+                    return;
+                }
 
                 // Redirect to target page
                 window.location.href = targetPage + '.html';
             } else {
+                errorMessage.textContent = 'Invalid username or password';
                 errorMessage.classList.add('show');
                 document.getElementById('password').value = '';
 
